@@ -5,11 +5,9 @@ defmodule PermutationCalculator do
     buffer |> Map.values() |> Enum.map(fn x -> x + 1 end) |> IO.inspect()
   end
 
-  def permutate(index, used, buffer) do
-    if index >= @size do
-      print_buffer(buffer)
-    end
+  def permutate(index, _, buffer) when index >= @size, do: print_buffer(buffer)
 
+  def permutate(index, used, buffer) do
     0..(@size - 1)
     |> Enum.filter(fn subindex -> not Map.get(used, subindex) end)
     |> Enum.each(fn subindex ->
